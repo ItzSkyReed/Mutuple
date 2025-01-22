@@ -11,23 +11,6 @@ def _calculate_offset_with_index(index: int) -> int:
             + index * ctypes.sizeof(ctypes.c_void_p)
     )
 
-def _resize_tuple(tup: tuple, new_size: int) -> None:
-    """
-    Resizes the given tuple to the specified size by modifying its internal structure.
-
-    :param tup: The tuple to be resized.
-    :param new_size: The new size for the tuple.
-    """
-    # Get the internal size pointer of the tuple
-    tuple_size_ptr = id(tup) + ctypes.sizeof(ctypes.c_ssize_t)  # Offset for ob_size
-
-    # Write the new size directly into the tuple's internal structure
-    ctypes.memmove(
-        tuple_size_ptr,
-        ctypes.pointer(ctypes.c_ssize_t(new_size)),
-        ctypes.sizeof(ctypes.c_ssize_t),
-    )
-
 def replace_at(tup: tuple, new_element: Any, index: int):
     """
     :param tup: Tuple object
