@@ -77,14 +77,15 @@ def splice_from(tup1: tuple, tup2: tuple, start_index: int = 0):
             ctypes.pointer(ctypes.py_object(element)),
             ctypes.sizeof(ctypes.c_void_p),
         )
+if __name__ == "__main__":
 
+    # Example usage
+    tup11 = (1, 2, 3, 4, 5)
+    tup22 = (42, 43)
+    print("Before modification:", tup11)
+    replace_at(tup11, 315, 1)
+    print("After modification:", tup11)
 
-# Example usage
-tup11 = (1, 2, 3, 4, 5)
-tup22 = (42, 43)
-
-print("Before modification:", tup11)
-
-splice_from(tup11, tup22, start_index=3)
-delete_at(tup11, 3)
-print("After modification:", tup11)
+    print("Before modification:", tup11)
+    splice_from(tup11, tup22, start_index=3)
+    print("After modification:", tup11)
